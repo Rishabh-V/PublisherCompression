@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublisherCompression", "PublisherCompression\PublisherCompression.csproj", "{FEA138B4-9E1A-469C-A924-2FD3BEBEEB96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublisherCompression.DataGenerator", "PublisherCompression.DataGenerator\PublisherCompression.DataGenerator.csproj", "{EE54298A-3A9A-4C4A-A671-05FD83B753DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEA138B4-9E1A-469C-A924-2FD3BEBEEB96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA138B4-9E1A-469C-A924-2FD3BEBEEB96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEA138B4-9E1A-469C-A924-2FD3BEBEEB96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEA138B4-9E1A-469C-A924-2FD3BEBEEB96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE54298A-3A9A-4C4A-A671-05FD83B753DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE54298A-3A9A-4C4A-A671-05FD83B753DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE54298A-3A9A-4C4A-A671-05FD83B753DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE54298A-3A9A-4C4A-A671-05FD83B753DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {64EA829C-39CF-4045-A903-8D3000F3CB8A}
+	EndGlobalSection
+EndGlobal
