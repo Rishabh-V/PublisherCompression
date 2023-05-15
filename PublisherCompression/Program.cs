@@ -21,13 +21,13 @@ foreach (var size in sizeArray)
     await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, syntheticRepeatedOptions);
     await Task.Delay(delayInMilliSeconds);
     await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, syntheticRepeatedOptions.WithCompression(true));
-    //--------------------------------------------------------------------------------
-
+    
     var realisticRepeatedOptions = syntheticRepeatedOptions.WithMessageType(MessageType.Realistic).WithMessagePattern(MessagePattern.Repeated);
     await Task.Delay(delayInMilliSeconds);
     await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, realisticRepeatedOptions);
     await Task.Delay(delayInMilliSeconds);
     await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, realisticRepeatedOptions.WithCompression(true));
+    await Task.Delay(delayInMilliSeconds);
 }
 
 Console.WriteLine("All done....");
