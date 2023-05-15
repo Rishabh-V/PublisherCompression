@@ -3,34 +3,32 @@
 using PublisherCompression;
 using PublisherCompression.DataGenerator;
 
-Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", @"C:\Users\rishabhverma\Downloads\cloudmigrationassistant-ae100c039e3a.json");
-
 var logger = new FileLogger("Performance.txt");
+var delayInMilliSeconds = 5 * 60 * 1000;
 
-await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, logger, MessageType.Synthetic, MessagePattern.Repeated, false, 10);
-await Task.Delay(2 * 60 * 1000);
-await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, logger, MessageType.Synthetic, MessagePattern.Repeated, true, 10);
-//--------------------------------------------------------------------------------
-await Task.Delay(2 * 60 * 1000);
-await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, logger, MessageType.Synthetic, MessagePattern.SemiRandom, false, 10);
-await Task.Delay(2 * 60 * 1000);
-await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, logger, MessageType.Synthetic, MessagePattern.SemiRandom, true, 10);
-//--------------------------------------------------------------------------------
-await Task.Delay(2 * 60 * 1000);
-await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, logger, MessageType.Synthetic, MessagePattern.Random, false, 10);
-await Task.Delay(2 * 60 * 1000);
-await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, logger, MessageType.Synthetic, MessagePattern.Random, true, 10);
-//---------------------------------------------------------------------------------
-await Task.Delay(2 * 60 * 1000);
-await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, logger, MessageType.Realistic, MessagePattern.Repeated, false, 10);
-await Task.Delay(2 * 60 * 1000);
-await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, logger, MessageType.Realistic, MessagePattern.Repeated, true, 10);
-//--------------------------------------------------------------------------------
-await Task.Delay(2 * 60 * 1000);
-await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, logger, MessageType.Realistic, MessagePattern.SemiRandom, false, 10);
-await Task.Delay(2 * 60 * 1000);
-await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, logger, MessageType.Realistic, MessagePattern.SemiRandom, true, 10);
-//--------------------------------------------------------------------------------
+var sizeArray = new int[] { 100, 500, 1000, 16000, 64000, 128000, 256000, 512000, 1024000, 2048000 };
+var options = new Options
+{
+    Logger = logger,
+    MessagePattern = MessagePattern.Repeated,
+    MessageType = MessageType.Synthetic,
+    SizeFilter = SizeFilter.Equal
+};
 
-Console.WriteLine("All done");
+foreach (var size in sizeArray)
+{
+    var syntheticRepeatedOptions = options.WithMessageType(MessageType.Synthetic).WithMessagePattern(MessagePattern.Repeated).WithMessageSizeEqual(size);
+    await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, syntheticRepeatedOptions);
+    await Task.Delay(delayInMilliSeconds);
+    await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, syntheticRepeatedOptions.WithCompression(true));
+    //--------------------------------------------------------------------------------
+
+    var realisticRepeatedOptions = syntheticRepeatedOptions.WithMessageType(MessageType.Realistic).WithMessagePattern(MessagePattern.Repeated);
+    await Task.Delay(delayInMilliSeconds);
+    await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, realisticRepeatedOptions);
+    await Task.Delay(delayInMilliSeconds);
+    await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, realisticRepeatedOptions.WithCompression(true));
+}
+
+Console.WriteLine("All done....");
 Console.ReadLine();

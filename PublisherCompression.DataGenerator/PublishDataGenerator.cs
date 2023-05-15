@@ -170,3 +170,10 @@ public enum MessagePattern
     SemiRandom,
     Random
 }
+
+public enum SizeFilter
+{
+    GreaterThanOrEqual = 0,
+    LessThanOrEqual,
+    Equal
+}
