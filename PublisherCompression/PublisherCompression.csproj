@@ -28,8 +28,50 @@
     <None Update="Reference\Google.Cloud.Iam.V1.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Test Data\Realistic\Realistic_Random_100.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Random_1000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Random_10000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Random_100000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Random_1000000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Random_3400000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Random_500.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Random_5000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Random_50000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Random_500000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Test Data\Realistic\Realistic_Repeated_100.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Repeated_1000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Repeated_10000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Repeated_100000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Repeated_1000000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Test Data\Realistic\Realistic_Repeated_102400.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -55,11 +97,26 @@
     <None Update="Test Data\Realistic\Realistic_Repeated_3200.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Test Data\Realistic\Realistic_Repeated_3400000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Test Data\Realistic\Realistic_Repeated_400.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Test Data\Realistic\Realistic_Repeated_409600.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Repeated_500.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Repeated_5000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Repeated_50000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_Repeated_500000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Test Data\Realistic\Realistic_Repeated_51200.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -74,7 +131,19 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Test Data\Realistic\Realistic_SemiRandom_100.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_SemiRandom_1000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_SemiRandom_10000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_SemiRandom_100000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_SemiRandom_1000000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Test Data\Realistic\Realistic_SemiRandom_1600.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -85,8 +154,23 @@
     <None Update="Test Data\Realistic\Realistic_SemiRandom_3200.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Test Data\Realistic\Realistic_SemiRandom_3400000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Test Data\Realistic\Realistic_SemiRandom_400.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_SemiRandom_500.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_SemiRandom_5000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_SemiRandom_50000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Realistic\Realistic_SemiRandom_500000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Test Data\Realistic\Realistic_SemiRandom_800.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -157,6 +241,18 @@
     <None Update="Test Data\Synthetic\Synthetic_Random_100.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Test Data\Synthetic\Synthetic_Random_1000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_Random_10000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_Random_100000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_Random_1000000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Test Data\Synthetic\Synthetic_Random_102400.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -181,10 +277,25 @@
     <None Update="Test Data\Synthetic\Synthetic_Random_3200.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Test Data\Synthetic\Synthetic_Random_3400000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Test Data\Synthetic\Synthetic_Random_400.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Test Data\Synthetic\Synthetic_Random_409600.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_Random_500.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_Random_5000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_Random_50000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_Random_500000.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Test Data\Synthetic\Synthetic_Random_51200.txt">
@@ -200,6 +311,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Test Data\Synthetic\Synthetic_Repeated_100.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_Repeated_1000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_Repeated_10000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_Repeated_100000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_Repeated_1000000.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Test Data\Synthetic\Synthetic_Repeated_102400.txt">
@@ -226,10 +349,25 @@
     <None Update="Test Data\Synthetic\Synthetic_Repeated_3200.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Test Data\Synthetic\Synthetic_Repeated_3400000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Test Data\Synthetic\Synthetic_Repeated_400.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Test Data\Synthetic\Synthetic_Repeated_409600.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_Repeated_500.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_Repeated_5000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_Repeated_50000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_Repeated_500000.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Test Data\Synthetic\Synthetic_Repeated_51200.txt">
@@ -245,6 +383,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Test Data\Synthetic\Synthetic_SemiRandom_100.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_SemiRandom_1000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_SemiRandom_10000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_SemiRandom_100000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_SemiRandom_1000000.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Test Data\Synthetic\Synthetic_SemiRandom_102400.txt">
@@ -271,10 +421,25 @@
     <None Update="Test Data\Synthetic\Synthetic_SemiRandom_3200.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Test Data\Synthetic\Synthetic_SemiRandom_3400000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Test Data\Synthetic\Synthetic_SemiRandom_400.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Test Data\Synthetic\Synthetic_SemiRandom_409600.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_SemiRandom_500.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_SemiRandom_5000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_SemiRandom_50000.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Test Data\Synthetic\Synthetic_SemiRandom_500000.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Test Data\Synthetic\Synthetic_SemiRandom_51200.txt">

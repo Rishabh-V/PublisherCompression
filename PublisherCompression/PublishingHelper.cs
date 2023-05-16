@@ -1,6 +1,8 @@
-﻿using Google.Api.Gax.Grpc;
+﻿using Google.Api.Gax;
+using Google.Api.Gax.Grpc;
 using Google.Cloud.PubSub.V1;
 using Microsoft.Extensions.Logging;
+using PublisherCompression.DataGenerator;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 
@@ -20,6 +22,8 @@ internal static class PublishingHelper
             .WithAdditionalOptions(options => options.LoggerFactory = loggerFactory);
 
         // File name is of the format <message type>_<message pattern>_<size in bytes>.txt
+        // Note: The following size (in bytes) text file exists as that is what we need.
+        // 100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000, 3400000 
         foreach (var file in s_testFiles)
         {
             var fileInfo = new FileInfo(file);
@@ -36,12 +40,13 @@ internal static class PublishingHelper
         Console.WriteLine($"Total {s_dictionary.Count} different messages added to dictionary for testing.");
     }
 
-    internal static async Task<int> PublishBatchMessagesAsync(IEnumerable<string> messageTexts, bool enableCompression = false, string projectId = "cloudmigrationassistant", string topicId = "dependency_injection")
+    internal static async Task<int> PublishCompressedMessagesAsync(IEnumerable<string> messageTexts, bool enableCompression = false, string projectId = "cloudmigrationassistant", string topicId = "dependency_injection")
     {
         TopicName topicName = TopicName.FromProjectTopic(projectId, topicId);
         var customSettings = new PublisherClient.Settings
         {
             EnableCompression = enableCompression,
+            BatchingSettings = new BatchingSettings(100L, 5000000, null),
         };
 
         PublisherClient publisher = await new PublisherClientBuilder
@@ -68,7 +73,7 @@ internal static class PublishingHelper
         return publishedMessageCount;
     }
 
-    internal static async Task ExecuteTestSuiteAsync(MessageType messageType = MessageType.Synthetic, MessagePattern pattern = MessagePattern.Repeated, bool enableCompression = false, int numberOfMessages = 10, int messageFilterSize = 100, SizeFilter filter = SizeFilter.GreaterThanOrEqual)
+    internal static async Task ExecuteTestSuiteAsync(MessageType messageType = MessageType.Synthetic, MessagePattern pattern = MessagePattern.Repeated, bool enableCompression = false, int numberOfMessages = 100, int messageFilterSize = 100, SizeFilter filter = SizeFilter.GreaterThanOrEqual)
     {
         var filteredMessages = filter switch
         {
@@ -87,11 +92,11 @@ internal static class PublishingHelper
             var msgPattern = key.MessagePattern;
             var size = key.Size;
             var message = item.Value;
-
-            Console.WriteLine($"Compression: {enableCompression}, Number of Messages: {numberOfMessages}, MessageType: {msgType}, MessagePattern: {msgPattern}, Size: {size} bytes");
+            var actualSize = System.Text.Encoding.UTF8.GetBytes(message).Length;
+            Console.WriteLine($"Compression: {enableCompression}, Number of Messages: {numberOfMessages}, MessageType: {msgType}, MessagePattern: {msgPattern}, Size: {size} bytes, Actual Size: {actualSize} bytes");
 
             var messageList = Enumerable.Repeat<string>(message, numberOfMessages);
-            await PublishBatchMessagesAsync(messageList, enableCompression);
+            await PublishCompressedMessagesAsync(messageList, enableCompression);
         }
     }
 
@@ -102,7 +107,6 @@ internal static class PublishingHelper
         var pattern = options.MessagePattern;
         var enableCompression = options.EnableCompression;
         var numberOfMessages = options.NumberOfMessages;
-        var numberOfIterations = options.NumberOfIterations;
         var messageFilterSize = options.MessageFilterSize;
         var sizeFilter = options.SizeFilter;
         var duration = options.TotalDuration;
@@ -119,8 +123,7 @@ internal static class PublishingHelper
 
         stopwatch.Stop();
         logger.LogInformation($"End Time: {DateTime.Now.ToLocalTime()}");
-    }
-    
+    }    
 }
 
 internal sealed class Options
@@ -147,6 +150,13 @@ internal sealed class Options
     {
         var clone = Clone();
         clone.MessageType = messageType;
+        return clone;
+    }
+
+    internal Options WithFrequency(int intervalInMilliseconds)
+    {
+        var clone = Clone();
+        clone.IntervalInMilliseconds = intervalInMilliseconds;
         return clone;
     }
 
@@ -189,7 +199,6 @@ internal sealed class Options
             MessageFilterSize = this.MessageFilterSize,
             MessagePattern = this.MessagePattern,
             MessageType = this.MessageType,
-            NumberOfIterations = this.NumberOfIterations,
             NumberOfMessages = this.NumberOfMessages,
             SizeFilter = this.SizeFilter,
             TotalDuration = this.TotalDuration,
@@ -200,7 +209,7 @@ internal sealed class Options
 
     public TimeSpan TotalDuration { get; set; } = TimeSpan.FromHours(1);
 
-    public int IntervalInMilliseconds { get; set; } = 1000;
+    public int IntervalInMilliseconds { get; set; } = 100000;
 
     public MessageType MessageType { get; set; } = MessageType.Synthetic;
 
@@ -208,11 +217,9 @@ internal sealed class Options
 
     public bool EnableCompression { get; set; } = false;
 
-    public int NumberOfMessages { get; set; } = 10;
+    public int NumberOfMessages { get; set; } = 100;
 
-    public int NumberOfIterations { get; set; } = 200;
-
-    public int MessageFilterSize { get; set; } = 100;
+    public int MessageFilterSize { get; set; } = 500;
 
     public SizeFilter SizeFilter { get; set; } = SizeFilter.GreaterThanOrEqual;
 }

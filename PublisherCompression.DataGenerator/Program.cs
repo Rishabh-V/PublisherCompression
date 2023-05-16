@@ -5,16 +5,18 @@ using PublisherCompression.DataGenerator;
 var messageTypes = Enum.GetValues(typeof(MessageType));
 var messagePatterns = Enum.GetValues(typeof(MessagePattern));
 
+var sizes = new int[] { 100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000, 3400000 };
+
 foreach (MessageType messageType in messageTypes)
 {
     foreach (MessagePattern messagePattern in messagePatterns)
     {
-        // All sizes are in bytes from 100 bytes to 3.4 MB. The size is doubled everytime till 3.4 MB.
-        for (int size = 100; size <= 3_400_000; size*=2)
+        foreach (var sizeInBytes in sizes)
         {
-            var publishDataGenerator = new PublishDataGenerator(messageType, messagePattern, size);
+            Console.WriteLine($"Processing {messageType} {messagePattern} {sizeInBytes} bytes");
+            var publishDataGenerator = new PublishDataGenerator(messageType, messagePattern, sizeInBytes);
             var data = publishDataGenerator.Generate();
-            var fileName = $"{messageType}_{messagePattern}_{size}.txt";
+            var fileName = $"{messageType}_{messagePattern}_{sizeInBytes}.txt";
             using var writer = new StreamWriter(fileName);
             writer.Write(data);
         }

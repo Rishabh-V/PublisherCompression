@@ -82,7 +82,7 @@ public class PublishDataGenerator
 
     private string GenerateSemiRandomRealistic()
     {
-        StringBuilder resultBuilder = new StringBuilder();
+        List<byte> serializedBytes = new List<byte>();
         try
         {
             Twitter twitter = new()
@@ -90,17 +90,20 @@ public class PublishDataGenerator
                 Spaces = new List<Space>()
             };
             
-            while (resultBuilder.Length < _size)
+            while (serializedBytes.Count < _size)
             {
                 twitter.Spaces.Add(_thriftObjectGenerator.GenerateSpace());
-                resultBuilder.Append(Serialize(twitter));
+                serializedBytes.AddRange(Serialize(twitter));
             }
+
+            serializedBytes.RemoveRange(_size, serializedBytes.Count - _size);
         }
         catch (TTransportException e)
         {
             Console.WriteLine(e);
+            throw;
         }
-        return resultBuilder.ToString();
+        return Encoding.UTF8.GetString(serializedBytes.ToArray());
     }
 
     private static byte[] Serialize(TBase obj)
@@ -134,7 +137,7 @@ public class PublishDataGenerator
 
     private string GenerateRepeatedRealistic()
     {
-        var resultBuilder = new StringBuilder();
+        List<byte> serializedBytes = new List<byte>();
         try
         {
             PhoneBook phoneBook = new()
@@ -142,19 +145,21 @@ public class PublishDataGenerator
                 People = new List<Person>()
             };
             
-            while (resultBuilder.Length < _size)
+            while (serializedBytes.Count < _size)
             {
                 phoneBook.People.Add(_thriftObjectGenerator.GeneratePerson());
-                var serializedBytes = Serialize(phoneBook);
-                resultBuilder.Append(Encoding.UTF8.GetString(serializedBytes));
+                serializedBytes.AddRange(Serialize(phoneBook));
             }
+
+            serializedBytes.RemoveRange(_size, serializedBytes.Count - _size);
         }
         catch (TTransportException e)
         {
             Console.WriteLine(e);
+            throw;
         }
 
-        return resultBuilder.ToString();
+        return Encoding.UTF8.GetString(serializedBytes.ToArray());
     }
 }
 
