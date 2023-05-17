@@ -19,6 +19,12 @@ public class FileLogger : ILogger
 
     public bool IsEnabled(LogLevel logLevel) => true;
 
+    public void Log(string message)
+    {
+        var formatter = new Func<string, Exception, string>((msg, ex) => msg);
+        Log(LogLevel.Information, default, message, null, formatter);
+    }
+
     public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
     {
         if (!IsEnabled(logLevel))

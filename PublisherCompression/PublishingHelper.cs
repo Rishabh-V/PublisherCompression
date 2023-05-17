@@ -1,10 +1,10 @@
 ﻿using Google.Api.Gax;
-using Google.Api.Gax.Grpc;
 using Google.Cloud.PubSub.V1;
 using Microsoft.Extensions.Logging;
 using PublisherCompression.DataGenerator;
 using System.Collections.Concurrent;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace PublisherCompression;
 
@@ -13,14 +13,15 @@ internal static class PublishingHelper
     private static string s_folder = Path.Combine(AppContext.BaseDirectory, "Test Data");
     private static List<string> s_testFiles = Directory.EnumerateFiles(s_folder, "*.txt", SearchOption.AllDirectories).ToList();
     private static ConcurrentDictionary<(string MessageType, string MessagePattern, int Size), string> s_dictionary = new();
-    private static GrpcAdapter s_grpcAdapter;
     
-    static PublishingHelper()
-    {
-        var loggerFactory = LoggerFactory.Create(builder => builder.AddProvider(new FileLoggerProvider("grpc.txt")).AddConsole().SetMinimumLevel(LogLevel.Trace));
-        s_grpcAdapter = GrpcNetClientAdapter.Default
-            .WithAdditionalOptions(options => options.LoggerFactory = loggerFactory);
+    internal static readonly AssemblyName s_assemblyName = Assembly.GetEntryAssembly().GetName();
+    internal static readonly string s_serviceName = s_assemblyName.Name;
+    internal static readonly string s_version = s_assemblyName.Version.ToString();
+    internal static readonly ActivitySource Source = new(s_serviceName, s_version);
+    internal static readonly FileLogger Logger = new FileLogger("Performance.txt");
 
+    static PublishingHelper()
+    {     
         // File name is of the format <message type>_<message pattern>_<size in bytes>.txt
         // Note: The following size (in bytes) text file exists as that is what we need.
         // 100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000, 3400000 
@@ -46,14 +47,13 @@ internal static class PublishingHelper
         var customSettings = new PublisherClient.Settings
         {
             EnableCompression = enableCompression,
-            BatchingSettings = new BatchingSettings(100L, 5000000, null),
+            BatchingSettings = new BatchingSettings(100L, null, null),
         };
 
         PublisherClient publisher = await new PublisherClientBuilder
         {
             TopicName = topicName,
             Settings = customSettings,
-            GrpcAdapter = s_grpcAdapter,
         }.BuildAsync();
 
         int publishedMessageCount = 0;
@@ -93,7 +93,7 @@ internal static class PublishingHelper
             var size = key.Size;
             var message = item.Value;
             var actualSize = System.Text.Encoding.UTF8.GetBytes(message).Length;
-            Console.WriteLine($"Compression: {enableCompression}, Number of Messages: {numberOfMessages}, MessageType: {msgType}, MessagePattern: {msgPattern}, Size: {size} bytes, Actual Size: {actualSize} bytes");
+            Console.WriteLine($"Compression: {enableCompression}, Number of Messages: {numberOfMessages}, MessageType: {msgType}, MessagePattern: {msgPattern}");
 
             var messageList = Enumerable.Repeat<string>(message, numberOfMessages);
             await PublishCompressedMessagesAsync(messageList, enableCompression);
@@ -118,7 +118,10 @@ internal static class PublishingHelper
         while (stopwatch.Elapsed < duration)
         {
             await action(messageType, pattern, enableCompression, numberOfMessages, messageFilterSize, sizeFilter);
-            await Task.Delay(intervalInMilliseconds);
+            if (intervalInMilliseconds != 0)
+            {
+                await Task.Delay(intervalInMilliseconds);
+            }
         }
 
         stopwatch.Stop();

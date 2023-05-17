@@ -5,7 +5,7 @@ using PublisherCompression.DataGenerator;
 var messageTypes = Enum.GetValues(typeof(MessageType));
 var messagePatterns = Enum.GetValues(typeof(MessagePattern));
 
-var sizes = new int[] { 100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000, 3400000 };
+var sizes = new int[] { 100, 200, 300, 400, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000, 3400000 };
 
 foreach (MessageType messageType in messageTypes)
 {
