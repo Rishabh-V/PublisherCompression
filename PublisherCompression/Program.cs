@@ -26,7 +26,7 @@ static void AddEnrichment(Activity activity, string eventName, object rawObject)
 {
     if (eventName == "OnStartActivity" && rawObject is HttpRequestMessage httpRequest)
     {
-        // Temporary hack to use sync over async to get the size of the compressed payload.
+        // Temporary hack to get the size of the compressed payload.
         Task.Run(async () => await GetCompressedPayloadSize(activity, httpRequest));        
     }
 }
