@@ -47,6 +47,7 @@ internal static class PublishingHelper
         var customSettings = new PublisherClient.Settings
         {
             EnableCompression = enableCompression,
+            CompressionBytesThreshold = 240,
             BatchingSettings = new BatchingSettings(100L, null, null),
         };
 

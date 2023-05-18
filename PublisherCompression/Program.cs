@@ -87,6 +87,7 @@ var patterns = new MessagePattern[] { MessagePattern.Repeated, MessagePattern.Se
 
 foreach (var pattern in patterns)
 {
+    // IMP: Set Publisher Batch Settings to 1, and Threshold to 100 bytes or less.
     var realOptions = options.WithMessagePattern(pattern);
     await PublishingHelper.RunIteration(PublishingHelper.ExecuteTestSuiteAsync, realOptions);
 }
